@@ -1,0 +1,7 @@
+{
+  "name": "Tickets Piques",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
