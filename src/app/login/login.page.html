@@ -1,0 +1,38 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title class="ion-text-center ion-text-capitalize">login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <figure>
+    <ion-avatar class="center-avatar">
+      <img src="assets/IMAGENES/user.png">
+    </ion-avatar>
+  </figure>
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Email" placeholder="email@domain.com" formControlName="email">
+        <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-icon slot="icon-only" name="eye" aria-hidden="true"></ion-icon>
+        </ion-button>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="password" type="password" value="password" >  
+      <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+      <ion-button fill="clear" slot="end" aria-label="Show/hide">
+        <ion-icon slot="icon-only" name="eye" aria-hidden="true"></ion-icon>
+      </ion-button>
+    </ion-input>
+    </ion-item>
+    <ion-button type="ngSubmit" class=".ion-button-login" color="medium" fill="outline" shape="round" expand="full">
+      Login
+    </ion-button>
+  </form>
+
+  
+  
+</ion-content>
