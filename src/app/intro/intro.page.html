@@ -17,13 +17,14 @@
       <ion-title size="large">Autodromo Motorsports Park Barranquilla</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <swiper-container
   [loop]="true"
   [pagination]="true"
   [slidesPerView]="1"
   [autoplay]="false"
   >
-    <swiper-slide *ngFor="let slide of slides; let i = index">
+    <swiper-slide *ngFor="let slide of slides">
       <h1 class="red-title">{{slide.title}}</h1>
       <p class={{slide.class}} [innerHTML]="slide.description" > 
         {{slide.description}} 
@@ -32,6 +33,8 @@
       <p>{{slide.help_text}}</p>
       <!-- <p *ngIf="i == 0" >i: {{i}} </p> -->
       <ion-button color="danger" shape="round" class="button-sale" > COMPRAR AHORA </ion-button>
+    
+      <ion-button (click)="goToHome()">Ir al Home</ion-button>
     </swiper-slide>
 
   </swiper-container>

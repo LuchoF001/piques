@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,7 @@ export class LoginPage implements OnInit {
     email: [
       { type: "required", message: "El correo es obligatorio." },
       { type: "pattern" , message: "El correo ingresado no es valido."}
-    ]
-  }
-  validation_password = {
+    ],  
     password: [
       { type: "required", message: "La contraseña es obligatoria." },
       { type: "pattern" , message: "La contraseña ingresada no es valida."}
@@ -27,7 +26,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private storage: Storage
   ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern(
-            "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+            "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
           )
         ])
       ),
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern(
-        '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'
+        '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'
           )
         ])
       )
@@ -59,10 +59,13 @@ export class LoginPage implements OnInit {
     console.log(login_data);
     this.authService.loginUser(login_data).then(res => {
       this.loginMessage = res;
+      this.storage.set("userLoggedIn", true);
       this.navCtrl.navigateForward("/home");
     } ) .catch(error => {
       this.loginMessage = error;
     });
   }
-
+  goToRegistro(){
+    this.navCtrl.navigateBack("/register");
+  }
 }

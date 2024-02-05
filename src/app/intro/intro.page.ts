@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intro',
@@ -38,9 +40,11 @@ export class IntroPage {
       class:"slide-4"
       }
   ]
-  router: any;
 
-  constructor() { }
+  constructor(
+    private storage: Storage,
+    private router: Router
+  ) {}
 
   goToHome(){
     console.log("go to home");
@@ -49,7 +53,7 @@ export class IntroPage {
 
   ionViewDidEnter() {
     console.log("Ya entre y vi la intro")
-    // Guardar en Storage que ya vio la intro
+    this.storage.set("mostreLaIntro",true);
   }
 
 }

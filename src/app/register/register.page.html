@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="goToLogin()">Volver</ion-button>
+    </ion-buttons>
+    <ion-title>registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <figure>
+    <ion-avatar class="center-avatar">
+      <img src="assets/IMAGENES/user.png">
+    </ion-avatar>
+  </figure>
+  <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Email" placeholder="email@domain.com" formControlName="email">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Name" placeholder="Name" formControlName="name">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Last Name" placeholder="LastName" formControlName="last_name">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Password" placeholder="Password" formControlName="password" type="password">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Confirmation Password" placeholder="Confirmation Password" formControlName="confirmation_password" type="password">
+      </ion-input>
+    </ion-item>
+
+    <ion-button
+    type="submit"
+    shape="round"
+    expand="full"
+    [disabled]="registerForm.valid"
+    type="submit">Registrar</ion-button>
+  
+  </form>
+</ion-content>

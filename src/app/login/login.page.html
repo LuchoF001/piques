@@ -21,32 +21,31 @@
     </ion-item>
 
     <ion-item>
-      <ion-input labelPlacement="password" type="password" value="password" formControlName="password" >  
-      <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+      <ion-input label="Password" labelPlacement="floating" placeholder="Password" formControlName="password" type="password"></ion-input>
+   <!--   <ion-input label="Password" labelPlacement="floating" type="password" value="password" formControlName="password" >  
+     <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
       <ion-button fill="clear" slot="end" aria-label="Show/hide">
         <ion-icon slot="icon-only" name="eye" aria-hidden="true"></ion-icon>
-      </ion-button>
-    </ion-input>
+      </ion-button> 
+    </ion-input> -->
     </ion-item>
 
       <div class="validation-messages">
         <ng-container *ngFor="let validation of validation_messages.email">
           <div *ngIf="
           (loginForm.get('email')?.hasError(validation.type) &&
-          loginForm.get('email')?.dirty) ||
-          loginForm.get('email')?.touched
+          loginForm.get('email')?.dirty)
           ">{{validation_messages}}
-          </div> 
+          </div>
         </ng-container>
       </div>
 
       <div class="validation-password">
-        <ng-container *ngFor="let validation of validation_password.password">
+        <ng-container *ngFor="let validation of validation_messages.password">
           <div *ngIf="
           (loginForm.get('password')?.hasError(validation.type) &&
-          loginForm.get('password')?.dirty) ||
-          loginForm.get('password')?.touched"
-          >{{validation_password}}
+          loginForm.get('password')?.dirty)"
+          >{{validation_messages}}
           </div>
         </ng-container>
       </div>
@@ -54,6 +53,9 @@
     <ion-button type="ngSubmit" class=".ion-button-login" color="medium" fill="outline" shape="round" expand="full">
       Login
     </ion-button>
+    <ion-button class="register-button" color="medium" fill="outline" shape="round" expand="full" (click)="goToRegistro">
+      Registrarme
+  </ion-button>
   </form>
 
     <div class="validation_messages"> {{loginMessage}} </div>
